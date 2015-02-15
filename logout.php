@@ -5,26 +5,21 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <link rel="stylesheet" type="text/css" href="index.css">
-<title>練習問題8の解答例の動作確認 A</title>
+<title>ログアウト</title>
 </head>
-<body bgcolor="#FFFFFF">
+<body>
 <?php
-session_start();
-  $_SESSION["name"] = 
-  isset($_SESSION["name"]) ? $_SESSION["name"] : "--";
-  $_SESSION["syusei"] = 
-  isset($_SESSION["syusei"]) ? $_SESSION["syusei"] : "--";
-  $_SESSION["age"] = 
-  isset($_SESSION["age"]) ? $_SESSION["age"] : "--";
+if (isset($_COOKIE["email"])) {
+  $errorMessage = "ログアウトしました。";
+}
+else {
+  $errorMessage = "セッションがタイムアウトしました。";
+}
+$_SESSION = array();
+@session_destroy();
 ?>
 
-彼女の名前は、<?php $_SESSION['name']; ?>です。<br />
-出身は、<?php $_SESSION['syusei']; ?>で、年齢は、<?php $_SESSION['age']; ?>歳です。<br />
-<br />
-<br />
-<a href="test.php">test.php</a><br />
-<a href="test2.php">test2.php</a><br />
-<a href="test3.php">test3.php</a>
-
+<p><?php echo $errorMessage; ?></p>
+<p><a href="login.php">ログイン画面に戻る</a></p>
 </body>
 </html>

@@ -5,21 +5,9 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <link rel="stylesheet" type="text/css" href="index.css">
-<title>ログイン</title>
+<title>管理メニュー</title>
 </head>
 <body>
-<?php
-require('dbconnect.php');
-session_start();
 
-if(isset($_SESSION["email"])){
-	header("Location: logout.php");
-	exit();
-}else{
-	echo "ログインしました。";
-}
-?>
-<p><a href="index.php">トップページへ</a></p>
-<p><a href="logout.php">ログアウト</a></p>
 </body>
 </html>
