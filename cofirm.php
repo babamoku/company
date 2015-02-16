@@ -10,20 +10,19 @@
 <body>
 
 <?php
-require('dbconnect.php');
-session_start();
+$db = mysqli_connect("localhost","root","","company") or
+die(mysqli_connect_error());
+mysqli_set_charset($db,"utf8");
 
-$_SESSION["company_name"] = $_POST["company_name"];
-$_SESSION["company_add"] = $_POST["company_add"];
-$_SESSION["company_tel"] = $_POST["company_tel"];
-$_SESSION["company_mail"] = $_POST["company_mail"];
-$_SESSION["name"] = $_POST["name"];
-$_SESSION["tel"] = $_POST["tel"];
-$_SESSION["mail"] = $_POST["mail"];
-$_SESSION["user_name"] = $_POST["user_name"];
-$_SESSION["special_text"] = $_POST["special_text"];
-
-if(!isset($_SESSION))
+mysqli_query($db , 'INSERT INTO k_company SET
+		company_name="' . $_POST["company_name"] . '" , company_add="' . $_POST["company_add"] . '" ,
+		company_tel="' . $_POST["company_tel"] . '", company_mail="' . $_POST["company_mail"] . '",
+		user_name="' . $_POST["user_name"] . '" , special_text="' . $_POST["special_text"] . '"') or
+		die(mysqli_error($db));
+mysqli_query($db, 'INSERT INTO k_customer SET
+		name="' . $_POST["name"] . '", tel="' . $_POST["tel"] . '", mail="' . $_POST["mail"] . '"') or
+		die(mysqli_error($db));
+header("Location: index_2.php");
 
 
 ?>
