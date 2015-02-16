@@ -8,6 +8,7 @@
 <title>会社情報登録</title>
 </head>
 <body>
+
 <script>
 //IDからテーブルを取得
 var table = document.getElementById("table_id");
@@ -84,8 +85,9 @@ function deleteColumn(id) {
 
 </script>
 
-<form action="check.php" method="post">
-<table border="1" height="600" id="sample1_table">
+
+<form action="" method="post">
+<table border="1" height="600" id="sa,ple1_table">
 <tr>
   <td width="70" height="70">ロゴ</td>
   <td width="500" colspan="3" rowspan=""><label for="company_name">顧客会社名</label><br /><input type="text" name="company_name" id="company_name" size="30" maxlength="50"></td>
@@ -127,12 +129,36 @@ function deleteColumn(id) {
 <tr>
 
 </tr>
-<tr>
   <td colspan="2"><label for="special_text">特記事項</label><br /><textarea name="special_text" cols="25" rows="" ></textarea>
   <br />
   <input type="submit" value="登録"></td>
 </tr>
+
+
 </table>
 </form>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
