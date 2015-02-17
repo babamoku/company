@@ -9,24 +9,28 @@
 </head>
 <body>
 <?php
-require('dbconnect.php');
+$db = mysqli_connect("localhost","root","","company") or
+die(mysqli_connect_error());
+mysqli_set_charset($db,"utf8");
 
- 
 
+mysqli_query($db , 'UPDATE k_company SET
+		company_name="' . $_POST["company_name"] . '" , company_add="' . $_POST["company_add"] . '" ,
+		company_tel="' . $_POST["company_tel"] . '", company_mail="' . $_POST["company_mail"] . '",
+		user_name="' . $_POST["user_name"] . '" , special_text="' . $_POST["special_text"] . '" WHERE k_company.company_id ="' . $_POST["h_id"] . '"') or
+		die(mysqli_error($db));
+mysqli_query($db, 'UPDATE k_customer SET
+		name="' . $_POST["name"] . '", tel="' . $_POST["tel"] . '",
+		 mail="' . $_POST["mail"] . '" WHERE k_customer.id = "' . $_POST["h_id"] . '"') or
+		die(mysqli_error($db));
 
-$conn = new PDO($db);
-
-mysqli_query($db, 'UPDATE k_company SET
-			company_name = :company_name,company_add = :company_add,
-			company_tel = :company_tel, company_mail = :company_mail,
-			user_name = :user_name, special_text = :special_text,
-		WHERE company_id = :company_id');
-mysqli_query($db,'UPDATE k_customer SET
-			name = :name, tel = :tel, mail = :mail,
-		WHERE id= :id');
 
 
 
 ?>
+<p>登録情報を変更しました。</p>
+<p><a href="list.php">一覧に戻る</a></p>
+
+
 </body>
 </html>

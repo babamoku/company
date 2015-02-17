@@ -17,20 +17,9 @@ mysqli_set_charset($db,"utf8");
 $recordSet = mysqli_query($db,'SELECT * FROM k_company LEFT JOIN k_customer ON k_company.company_id = k_customer.id');
 $date = mysqli_fetch_assoc($recordSet);
 
-echo "<table border=1>" ;
-echo "<tr><th>id</th><th>name</th><th>age</th></tr>" ;
-while(mysql_fetch_array($date)){
-echo "<tr>" ;
-echo "<td>" . $date['company_name'] . "</td>" ;
-echo "<td>" . $row["name"] . "</td>" ;
-echo "<td>" . $row["age"] . "</td>" ;
-echo "</tr>" ;
-}
-echo "</table>" ;
-
 ?>
 
-<!--table border="1" width="50%">
+<table border="1" width="50%">
 <tr>
 <th>ID</th>
 <th>顧客<br />会社名</th>
@@ -44,20 +33,25 @@ echo "</table>" ;
 <th>特記事項</th>
 <th>変更</th>
 </tr>
-
+<?php
+while($table = mysqli_fetch_assoc($recordSet)){
+?>
 <tr>
-	<td><?php echo $date["id"] ?></td>
-	<td><?php echo $date["company_name"] ?></td>
-	<td><?php echo $date["company_add"] ?></td>
-	<td><?php echo $date["company_tel"] ?></td>
-	<td><?php echo $date["company_mail"] ?></td>
-	<td><?php echo $date["name"] ?></td>
-	<td><?php echo $date["tel"] ?></td>
-	<td><?php echo $date["mail"] ?></td>
-	<td><?php echo $date["user_name"] ?></td>
-	<td><?php echo $date["special_text"] ?></td>
+	<td><?php echo $table["id"] ?></td>
+	<td><?php echo $table["company_name"] ?></td>
+	<td><?php echo $table["company_add"] ?></td>
+	<td><?php echo $table["company_tel"] ?></td>
+	<td><?php echo $table["company_mail"] ?></td>
+	<td><?php echo $table["name"] ?></td>
+	<td><?php echo $table["tel"] ?></td>
+	<td><?php echo $table["mail"] ?></td>
+	<td><?php echo $table["user_name"] ?></td>
+	<td><?php echo $table["special_text"] ?></td>
 	<td>変更</td>
 </tr>
-</table-->
+<?php
+}
+?>
+</table>
 </body>
 </html>
