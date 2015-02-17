@@ -22,7 +22,7 @@ mysqli_query($db , 'INSERT INTO k_company SET
 mysqli_query($db, 'INSERT INTO k_customer SET
 		name="' . $_POST["name"] . '", tel="' . $_POST["tel"] . '", mail="' . $_POST["mail"] . '"') or
 		die(mysqli_error($db));
-header("Location: index_2.php");
+header("Location: top.php");
 
 
 ?>

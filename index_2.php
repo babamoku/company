@@ -8,86 +8,8 @@
 <title>会社情報登録</title>
 </head>
 <body>
-
-<script>
-//IDからテーブルを取得
-var table = document.getElementById("table_id");
-/**
- * 行追加
- */
-function insertRow(id) {
-    // テーブル取得
-    var table = document.getElementById(id);
-    // 行を行末に追加
-    var row = table.insertRow(-1);
-    // セルの挿入
-    var cell1 = row.insertCell(-1);
-    var cell2 = row.insertCell(-1);
-    var cell3 = row.insertCell(-1);
-    // ボタン用 HTML
-    var button = '<input type="button" value="行削除" onclick="deleteRow(this)" />';
-
-    // 行数取得
-    var row_len = table.rows.length;
-
-    // セルの内容入力
-    cell1.innerHTML = button;
-    cell2.innerHTML = row_len + "-" + 1;
-    cell3.innerHTML = row_len + "-" + 2;
-}
-/**
- * 行削除
- */
-function deleteRow(obj) {
-    // 削除ボタンを押下された行を取得
-    tr = obj.parentNode.parentNode;
-    // trのインデックスを取得して行を削除する
-    tr.parentNode.deleteRow(tr.sectionRowIndex);
-}
-
-/**
- * 列追加
- */
-function insertColumn(id) {
-    // テーブル取得
-    var table = document.getElementById(id);
-    // 行数取得
-    var rows = table.rows.length;
-
-    // 各行末尾にセルを追加
-    for ( var i = 0; i < rows; i++) {
-        var cell = table.rows[i].insertCell(-1);
-        var cols = table.rows[i].cells.length;
-        if (cols > 10) {
-            continue;
-        }
-        cell.innerHTML = (i + 1) + '-' + (cols - 1);
-    }
-}
-/**
- * 列削除
- */
-function deleteColumn(id) {
-    // テーブル取得
-    var table = document.getElementById(id);
-    // 行数取得
-    var rows = table.rows.length;
-
-    // 各行末のセルを削除
-    for ( var i = 0; i < rows; i++) {
-        var cols = table.rows[i].cells.length;
-        if (cols < 2) {
-            continue;
-        }
-        table.rows[i].deleteCell(-1);
-    }
-}
-
-</script>
-
-
-<form action="" method="post">
-<table border="1" height="600" id="sa,ple1_table">
+<form action="index_2_cofirm.php" method="post">
+<table border="1" height="600">
 <tr>
   <td width="70" height="70">ロゴ</td>
   <td width="500" colspan="3" rowspan=""><label for="company_name">顧客会社名</label><br /><input type="text" name="company_name" id="company_name" size="30" maxlength="50"></td>
@@ -129,36 +51,12 @@ function deleteColumn(id) {
 <tr>
 
 </tr>
+<tr>
   <td colspan="2"><label for="special_text">特記事項</label><br /><textarea name="special_text" cols="25" rows="" ></textarea>
   <br />
-  <input type="submit" value="登録"></td>
+  <input type="submit" value="変更"><input type="submit" value="削除"></td>
 </tr>
-
-
 </table>
 </form>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
