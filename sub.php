@@ -5,8 +5,7 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <link rel="stylesheet" type="text/css" href="index.css">
-<title>会社情報登録</title>
-
+<title>検索</title>
 <script type="text/javascript">
 function setFormInput(val){
 　　if(!window.opener || window.opener.closed){
@@ -30,6 +29,8 @@ $date = mysqli_fetch_assoc($recordSet);
 ?>
 
 <h1>検索</h1>
+<input type="text" name="kensaku" id="kensaku">
+<input type="button" value="検索" onClick="window.close();return false;">
 <table border="1">
   <tr>
   <th>会社名</th>
@@ -39,13 +40,14 @@ while($table = mysqli_fetch_assoc($recordSet)){
 ?>
 <tr>
 <td>
-<a href="javascript:setFormInput('いちご');"><?php echo $table["company_name"]; ?></a>
+<a href="javascript:setFormInput('いちご');">いちご</a><br>
+<a href="javascript:setFormInput('りんご');">りんご</a><br>
+<a href="javascript:setFormInput('みかん');">みかん</a><br>
 </td>
 </tr>
 <?php
 }
 ?>
 </table>
-<input type="button" value="子ウィンドウを閉じる" onClick="window.close();return false;">
 </body>
 </html>

@@ -13,7 +13,7 @@ $db = mysqli_connect("localhost","root","","company") or
 die(mysqli_connect_error());
 mysqli_set_charset($db,"utf8");
 
-$recordSet = mysqli_query($db,'SELECT * FROM k_company LEFT JOIN k_customer ON k_company.company_id = k_customer.id');
+$recordSet = mysqli_query($db,'SELECT * FROM k_matter WHERE matter_id');
 $date = mysqli_fetch_assoc($recordSet);
 ?>
 <p><a href="index.php">登録する</a></p>
@@ -23,13 +23,14 @@ $date = mysqli_fetch_assoc($recordSet);
 <tr>
 <th>ID</th>
 <th>顧客会社名</th>
-<th>顧客会社住所</th>
-<th>ＴＥＬ(請求担当)</th>
-<th>Ｍａｉｌ(請求担当)</th>
+<th>対応内容</th>
+<th>対応者</th>
+<th>住所</th>
+<th>ＴＥＬ</th>
+<th>Ｍａｉｌ</th>
 <th>顧客担当者名</th>
-<th>ＴＥＬ(顧客担当)</th>
-<th>Ｍａｉｌ(顧客担当)</th>
-<th>弊社担当者</th>
+<th>顧客担当者(Ｍａｉｌ)</th>
+<th>顧客担当者(ＴＥＬ)</th>
 <th>特記事項</th>
 <th>変更</th>
 </tr>
@@ -37,17 +38,18 @@ $date = mysqli_fetch_assoc($recordSet);
 while($table = mysqli_fetch_assoc($recordSet)){
 ?>
 <tr>
-	<td><?php echo $table["id"] ?></td>
-	<td><?php echo $table["company_name"] ?></td>
-	<td><?php echo $table["company_add"] ?></td>
-	<td><?php echo $table["company_tel"] ?></td>
-	<td><?php echo $table["company_mail"] ?></td>
+	<td><?php echo $table["matter_id"] ?></td>
+	<td><?php echo $table["like_name"] ?></td>
+	<td><?php echo $table["content_text"] ?></td>
+	<td><?php echo $table["respone_name"] ?></td>
+	<td><?php echo $table["matter_add"] ?></td>
+	<td><?php echo $table["matter_tel"] ?></td>
+	<td><?php echo $table["matter_mail"] ?></td>
 	<td><?php echo $table["name"] ?></td>
 	<td><?php echo $table["tel"] ?></td>
 	<td><?php echo $table["mail"] ?></td>
-	<td><?php echo $table["user_name"] ?></td>
-	<td><?php echo $table["special_text"] ?></td>
-<td><?php echo "<a href=\"index_2.php?id=" . $table["id"] . "\">変更</a>"; ?></td>
+	<td><?php echo $table["sp_text"] ?></td>
+<td><?php echo "<a href=\"taiou_2.php?id=" . $table["matter_id"] . "\">変更</a>"; ?></td>
 </tr>
 <?php
 }

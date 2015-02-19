@@ -8,6 +8,7 @@
 <title>会社情報登録</title>
 </head>
 <body>
+<p><a href="top.php">トップ</a></p>
 <form action="cofirm.php" method="post">
 <table border="1" height="600">
 <tr>

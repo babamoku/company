@@ -5,13 +5,17 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <link rel="stylesheet" type="text/css" href="index.css">
-<title>トップページ</title>
+<title>会社情報登録</title>
+
 </head>
 <body>
 
-<a href="index.php">会社登録ページ</a><br />
-<p><a href="taiou.php">対応登録ページ</a></p>
-<p><a href="list.php">会社登録リストページ</a></p>
-<p><a href="taiou_list.php">対応リストページ</a></p>
+<input type="button" value="子ウィンドウを開く" onClick="window.open('test.php','sub','width=640,height=480');return false;">
+
+<div id="title01"></div>
+<form action="send.cgi" method="post" name="form01">
+<input type="text" name="text01" value="" readonly="readonly">
+</form>
+
 </body>
 </html>
