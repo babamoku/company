@@ -12,7 +12,7 @@ function setFormInput(val){
 　　　　window.close();
 　　} else{
 　　　　window.opener.document.getElementById('title01').innerHTML = val;
-　　　　window.opener.document.form01.text01.value = val;
+　　　　window.opener.document.form01.word.value = val;
 　　　　window.close();
 　　}
 }

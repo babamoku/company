@@ -15,7 +15,7 @@ mysqli_set_charset($db,"utf8");
 
 
 mysqli_query($db , 'UPDATE k_matter SET
-		like_name="' . $_POST["like_name"] . '" ,matter_add="' . $_POST["matter_add"] . '" , respone_name="' . $_POST["respone_name"] . '" ,
+		like_name="' . $_POST["text01"] . '" ,matter_add="' . $_POST["matter_add"] . '" , respone_name="' . $_POST["respone_name"] . '" ,
 		content_text="' . $_POST["content_text"] . '", matter_tel="' . $_POST["matter_tel"] . '",
 		matter_mail="' . $_POST["matter_mail"] . '" , name="' . $_POST["name"] . '",
 		tel="' . $_POST["tel"] . '", mail="' . $_POST["mail"] . '",

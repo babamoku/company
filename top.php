@@ -13,5 +13,8 @@
 <p><a href="taiou.php">対応登録ページ</a></p>
 <p><a href="list.php">会社登録リストページ</a></p>
 <p><a href="taiou_list.php">対応リストページ</a></p>
+<p><a href="calendar.php">カレンダー2月</a></p>
+<p><a href="calendar_2.php">カレンダー3月</a></p>
+<p><a href="test2.php">test</a></p>
 </body>
 </html>

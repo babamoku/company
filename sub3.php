@@ -11,8 +11,8 @@ function setFormInput(val){
 　　if(!window.opener || window.opener.closed){
 　　　　window.close();
 　　} else{
-　　　　window.opener.document.getElementById('title01').innerHTML = val;
-　　　　window.opener.document.form01.text01.value = val;
+　　　　window.opener.document.getElementById('title02').innerHTML = val;
+　　　　window.opener.document.form01.word_2.value = val;
 　　　　window.close();
 　　}
 }
@@ -24,10 +24,10 @@ $db = mysqli_connect("localhost","root","","company") or
 die(mysqli_connect_error());
 mysqli_set_charset($db,"utf8");
 
-$recordSet = mysqli_query($db,'SELECT * FROM k_company LEFT JOIN k_customer ON k_company.company_id = k_customer.id');
+$recordSet = mysqli_query($db,'SELECT * FROM k_matter');
 $date = mysqli_fetch_assoc($recordSet);
 
-$sql = mysqli_query($db,'SELECT company_name FROM k_company WHERE company_name LIKE "%g%"');
+$sql = mysqli_query($db,'SELECT respone_name FROM k_matter WHERE respone_name LIKE "%g%"');
 $date_2 = mysqli_fetch_assoc($sql);
 ?>
 
@@ -36,14 +36,14 @@ $date_2 = mysqli_fetch_assoc($sql);
 <input type="button" value="検索">
 <table border="1">
   <tr>
-  <th>会社名</th>
+  <th>対応者名</th>
 </tr>
 <?php
 while($table = mysqli_fetch_assoc($recordSet)){
 ?>
 <tr>
 <td>
-<a href="javascript:setFormInput('<?php echo $table["company_name"]; ?>');"><?php echo $table["company_name"]; ?></a></td>
+<a href="javascript:setFormInput('<?php echo $table["respone_name"]; ?>');"><?php echo $table["respone_name"]; ?></a></td>
 </tr>
 <?php
 }

@@ -15,7 +15,7 @@ die(mysqli_connect_error());
 mysqli_set_charset($db,"utf8");
 
 mysqli_query($db , 'INSERT INTO k_matter SET
-		like_name="' . $_POST["like_name"] . '" ,respone_name="' . $_POST["respone_name"] . '" , content_text="' . $_POST["content_text"] . '" ,
+		like_name="' . $_POST["text01"] . '" ,respone_name="' . $_POST["respone_name"] . '" , content_text="' . $_POST["content_text"] . '" ,
 		matter_add="' . $_POST["matter_add"] . '", matter_tel="' . $_POST["matter_tel"] . '",
 		matter_mail="' . $_POST["matter_mail"] . '" , name="' . $_POST["name"] . '",
 		tel="' . $_POST["tel"] . '" , mail="' . $_POST["mail"] . '",

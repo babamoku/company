@@ -12,6 +12,8 @@ $db = mysqli_connect("localhost","root","","company") or
 die(mysqli_connect_error());
 mysqli_set_charset($db,"utf8");
 
+$sql = mysqli_query($db,'SELECT name FROM k_person');
+$name = mysqli_fetch_assoc($sql);
 
 ?>
 
@@ -23,7 +25,7 @@ mysqli_set_charset($db,"utf8");
 <tr>
   <td width="70" height="70">ロゴ</td>
   <th>日付：<input type="text" name="created_at" id="created_at" size="15" maxlength="30" value="<?php echo date('Y/m/d'); ?>"></th>
-  <th>記入者：</th>
+  <th>記入者：<?php echo $name["name"]; ?>さん</th>
   <th></th>
 </tr>
 <tr>
@@ -48,7 +50,7 @@ mysqli_set_charset($db,"utf8");
 
 <tr>
   <th></th>
-  <td>対応内容<br /><input type="text" name="content_text" id="content_text" value="<?php echo $_POST['content_text']; ?>" size="30" maxlength="100"></td>
+  <td>対応内容<br /><input type="text" name="content_text" id="content_text"  value="<?php if(isset($_POST['content_text'])){ echo $_POST['content_text'];} ?>"></td>
   <td>対応者<br /><input type="text" name="respone_name" id="respone_name" size="30" maxlength="100"></td>
   <td></td>
   </tr>
