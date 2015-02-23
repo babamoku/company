@@ -3,18 +3,11 @@ $db = mysqli_connect("localhost","root","","company") or
 die(mysqli_connect_error());
 mysqli_set_charset($db,"utf8");
 
-$sql = mysqli_query($db,'select created_at from k_matter where created_at');
-$time = mysqli_fetch_assoc($sql);
+$timeSql = mysqli_query($db,'select created_at from k_matter where created_at');
+$time = mysqli_fetch_assoc($timeSql);
 
-$sql = mysqli_query($db,'select company_name from k_company where company_name');
-$name = mysqli_fetch_assoc($sql);
-
-
-foreach($time as $key =>$value){
-	echo $value ;
-}
-
-
+$result = mysqli_query($db,'select company_name from k_company ');
+$name = mysqli_fetch_assoc($result);
 
 $py = filter_input(INPUT_GET, 'y');
 $pm = filter_input(INPUT_GET, 'm');
@@ -54,7 +47,6 @@ $hl = !$dt->diff(new DateTime('first day of this month 00:00:00'))->days;
      range(1, $max),
      $after ? array_fill(0, $after, '') : array()
  ), 7);
-
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -70,7 +62,7 @@ $hl = !$dt->diff(new DateTime('first day of this month 00:00:00'))->days;
 <a href="top.php">トップ</a>
 <form action="" method="post" name="form01">
 
-<p><input type="submit" value="新規対応登録"></p>
+<p><a href="taiou.php"><input type="button" value="新規対応登録"></a></p>
 
 <p>顧客会社検索
 <input type="hidden" name="title01" id="title01">
@@ -92,22 +84,35 @@ $hl = !$dt->diff(new DateTime('first day of this month 00:00:00'))->days;
           <th colspan="2"><a href="<?=$next?>">翌月</a></th>
         </tr>
         <tr>
-          <th class="sun">日</th>
+          <th>日</th>
           <th>月</th>
           <th>火</th>
           <th>水</th>
           <th>木</th>
           <th>金</th>
-          <th class="sat">土</th>
+          <th>土</th>
         </tr>
 <?php foreach ($rows as $row): ?>
         <tr>
 <?php foreach ($row as $cell): ?>
-<?php if ($hl && $cell === $today): ?>
-          <td class="today"><?=$cell?></td>
+<?php if ($hl && $cell === $today):?>
+          <td><?=$cell?></td>
 <?php else: ?>
           <td><?=$cell?><br />
 
+<?php
+foreach($time as $value){
+	$re = substr($value,8,-9);
+foreach($name as $value2){
+	if($re == $cell){
+	echo $value2;
+	}
+  }
+}
+
+
+
+?>
 
 
           </td>

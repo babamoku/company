@@ -47,7 +47,12 @@ $row = mysqli_fetch_assoc($ab);
 </tr>
 <tr>
 <th></th>
- <td><label for="like_name">顧客会社名</label><br /><input type="text" name="like_name" id="like_name" value="<?php echo $row["like_name"]; ?>" size="15" maxlength="50"><a href="sub.php" target="window_name" onClick="disp('sub.php')"><input type="button" value="検索"></a></td>
+ <td>
+<input type="hidden" name="title01" id="title01">
+   <label for="text01" >顧客会社名</label><br />
+   <input type="text" name="text01" value="" readonly="readonly">
+   <input type="button" value="検索" onClick="window.open('sub.php','sub','width=640,height=480');return false;">
+ </td>
  <td>客種<br /><input type="text" name="kyaku" id="kyaku" size="10" maxlength="20"></td>
   <td>要求フラグ<br />
 <select name="c_flag" >

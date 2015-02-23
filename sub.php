@@ -27,10 +27,17 @@ mysqli_set_charset($db,"utf8");
 $recordSet = mysqli_query($db,'SELECT * FROM k_company LEFT JOIN k_customer ON k_company.company_id = k_customer.id');
 $date = mysqli_fetch_assoc($recordSet);
 
-$sql = mysqli_query($db,'SELECT company_name FROM k_company WHERE company_name LIKE "%g%"');
-$date_2 = mysqli_fetch_assoc($sql);
-?>
+$sqlSet = mysqli_query($db,'SELECT company_name FROM k_company');
+$date_2 = mysqli_fetch_assoc($sqlSet);
 
+foreach($date_2 as $value){
+	}
+
+$sql = mysqli_query($db,'SELECT company_name FROM k_company WHERE company_name LIKE "% .$value .%"');
+$date_3 = mysqli_fetch_assoc($sql);
+
+?>
+<form action="sub.php" method="post">
 <h1>検索</h1>
 <input type="text" name="kensaku" id="kensaku">
 <input type="button" value="検索">
@@ -49,5 +56,6 @@ while($table = mysqli_fetch_assoc($recordSet)){
 }
 ?>
 </table>
+</form>
 </body>
 </html>

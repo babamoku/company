@@ -1,50 +1,25 @@
- <?php
-  //ファイルを読み込み
-$db = mysqli_connect("localhost","root","","company") or
-die(mysqli_connect_error());
-mysqli_set_charset($db,"utf8");
 
-  //データを取得する
-  $keyword = $_POST['keyword'];
+<?php
 
-  //抽出条件を組み立てる
-  if(!empty($keyword)){
-    $where = "WHERE ";
-    $where.= "company_name LIKE '%".$keyword."%'";
-  }else{
-    print "<html>";
-    print "<head><title>未入力</title></head>";
-    print "<body>";
-    print "検索キーワードが入力されていません。";
-    print "<p><a href=\"test_top.php\" target=\"_self\">全件表示へ</a><p>";
-    print "</body>";
-    print "</html>";
+session_start();
+
+if (!isset($_SESSION["age"])) {
+    header("Location: test_top.php");
     exit;
-  }
+}
 
-  // クエリを送信する
-  $sql = "SELECT company_name FROM k_company ".$where;
-  $sql .= " ORDER BY company_name";
-  $result = executeQuery($sql);
+$sorry_message =
+        "ちょっとあなたの年齢は対象年齢に含まれていません・・・";
+$uranai_message[1] =
+        "10代のあなたには、PHPをお守り代わりに勉強するのが良いみたい。";
+$uranai_message[2] =
+        "20代のあなたには、趣味でPHPを使うと良いみたい。";
+$uranai_message[3] =
+        "30代のあなたには、ビジネススキルとしてPHPを勉強すると良いみたい。";
+$uranai_message[4] =
+        "40代のあなたには、PHPは新たなフロンティアとなるでしょう。";
 
-  //結果セットの行数を取得する
-  $rows = mysql_num_rows($result);
-
-  //表示するデータを作成
-  if($rows){
-    while($row = mysql_fetch_array($result)) {
-      $tempHtml .= "<tr>";
-      $tempHtml .= "<td>".$row["company_name"]."</td>";
-
-      $tempHtml .= "</tr>\n";
-    }
-    $msg = $rows."件のデータがあります。";
-  }else{
-    $msg = "データがありません。";
-  }
-
-  //結果保持用メモリを開放する
-  mysql_free_result($result);
+$sedai = floor($_SESSION["age"] / 10);
 
 ?>
 
@@ -55,28 +30,17 @@ mysqli_set_charset($db,"utf8");
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <link rel="stylesheet" type="text/css" href="index.css">
-<title>会社情報登録</title>
+<title>テスト</title>
 </head>
 <body>
-<form name="form2" action="test.php" method="post">
-      <input type="text" name="keyword" size="20">
-      <input type="submit" name="search" value="検索">
-    </form>
 
-    <?= $msg ?>
-    <table width = "300" border = "1">
-      <tr bgcolor="##ccffcc"><td>PREF_CD</td><td>PREF_NAME</td><td colspan="2">EDIT</td></tr>
-      <?= $tempHtml ?>
-      <form name="form1" action="insert.php" method="post">
-        <tr>
-          <td><input type="text" name="cd" id="cd"></td>
-          <td><input type="text" name="name"></td>
-          <td colspan="2">
-            <input type="submit" name="insert" value="追加"><input type="reset" value="リセット">
-          </td>
-        </tr>
-      </form>
-    </table>
-    <p><a href="test_top.php" target="_self">全件表示へ</a><p>
+<?php
+if (isset($uranai_message[$sedai])) {
+  print($uranai_message[$sedai]);
+} else {
+  print($sorry_message);
+}
+
+?>
 </body>
 </html>
